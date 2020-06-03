@@ -1,12 +1,28 @@
 
+/*
+ * Project sbtimer
+ * 
+ * Code developed for this board:
+ * Innovateking-EU ESP8266 Nodemcu OLED Arduino WiFi Modul 0,96 Zoll Anzeige ESP8266 18650 5-12V 500mA Kompatibel mit NodeMCU
+ * Weitere Informationen: https://www.amazon.de/dp/B07JFD21SW/ref=cm_sw_em_r_mt_dp_U_Bi51EbZWNA4DX 
+ * 
+ * In Arduino Ide select one of this boards:
+ * - Lolin (WeMos) D1 R2
+ * - Lolin (WeMos) D1 mini pro
+ * - Lolin (WeMos) D1 mini Lite
+ * I used: LOLIN(WEMOS) D1 R2 & mini (on COM4)
+ * 
+ * this board is not working:
+ * - Wemos D1 R1 (variant=d1)
+ * 
+ * The esp is controling an electro magnet
+ * I used this:
+ * Homyl DC 3.3V-5V Keyestudio Electromagnet Module For Arduino
+ * see: https://www.wish.com/product/5b5cd464ff666512b9871a11?share=web
+ * 
+ * 
+ */
 
-// Funktioniert mit Boards:
-// Lolin (WeMos) D1 R2
-// Lolin (WeMos) D1 mini pro
-// Lolin (WeMos) D1 mini Lite
-// ausgewaehlt und ok: LOLIN(WEMOS) D1 D2 & mini on COM4
-
-// geht nicht: Wemos D1 R1 (variant=d1)
 
 
 #include <Arduino.h>
@@ -87,7 +103,6 @@ Button* btnPress = NULL;
 /*
    Magnet control
 */
-
 int magState = LOW;
 int ledMagnet = HIGH;
 #define PIN_MAGNET D8
@@ -114,8 +129,8 @@ void toggleMag() {
 }
 
 /*
- * Magnet Power aus 
- * Magnet LED aus
+ * Magnet Power off 
+ * Magnet LED off
  */
 void initMag() {
   magState = LOW;
@@ -167,26 +182,19 @@ void setup() {
 
   delay(100);
 
-//  Serial.println("Hello World");
-//  Serial.println("Bibliothek: SSD1306Wire.h");
-//  Serial.print(" OLED_SDA -> SDA -> D1 = ");
-//  Serial.println(OLED_SDA);  // 5
-
-//  Serial.print(" OLED_SCL -> SCL -> D2 = ");
-//  Serial.println(D2);  // 4
-
-  // LED_BUILTIN = 2 -> blaue LED auf dem Wemos Board HIGH=Aus LOW=An
-  // leuchtet, wenn Timer laeuft
+  // LED_BUILTIN = 2 -> blue LED on Wemos Board HIGH=Aus LOW=An
+  // on, when timer runs
   pinMode(LED_BUILTIN, OUTPUT);
 
-  // gruene LED leuchtet, wenn Magnet an ist 
+  // green LED
+  // on when magnet is on 
   pinMode(LED_GREEN_PIN, OUTPUT);
   pinMode(PIN_MAGNET, OUTPUT);
   initMag(); 
 
     cdtimer.setDurationMs(durationTarget.getDurationMs());
 
-  // ButtonPullup will do "pinMode(12, INPUT_PULLUP)" isntead of "pinMode(12, INPUT)".
+  // ButtonPullup will do "pinMode(12, INPUT_PULLUP)" instead of "pinMode(12, INPUT)".
   // That way you can connect it between the pin and GND and don't need the additional resistor.
   btnUp = new ButtonPullup(JOYSTICK_UP_PIN);
   btnDown = new ButtonPullup(JOYSTICK_DOWN_PIN);
@@ -254,7 +262,6 @@ void loop() {
     } else {
           digitalWrite(LED_BUILTIN, HIGH);
     }
-
 
     delay(100);
 }

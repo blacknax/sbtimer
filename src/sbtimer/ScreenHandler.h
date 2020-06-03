@@ -4,7 +4,6 @@
 
 #include <Arduino.h>
 
-#include "Img128x96Test4.h"
 #include "icons.h"
 
 
@@ -143,12 +142,6 @@ void drawSetTimeScreen(String f2_text) {
 
 }
 
-void drawImageDemo() {
-  Serial.println("drawImage");
-  display.clear();
-  display.drawXbm(0, 0, Img128x96Test4_width, Img128x96Test4_height, Img128x96Test4_bits);
-  display.display();
-}
 
 
 
